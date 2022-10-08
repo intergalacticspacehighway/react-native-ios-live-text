@@ -1,4 +1,9 @@
-# React Native iOS live text image view
+# React Native iOS Live Text Image
+
+
+https://user-images.githubusercontent.com/23293248/194712758-67e897be-5703-40d5-8cea-83ae684ba00a.mp4
+
+
 
 # Installation
 
@@ -8,11 +13,8 @@ yarn add react-native-live-text-image-view
 cd ios/ && pod install
 ```
 
+Note: Requires iOS 16. Fallbacks to UIView below it.
 
-# Demo
-
-
-https://user-images.githubusercontent.com/23293248/194712758-67e897be-5703-40d5-8cea-83ae684ba00a.mp4
 
 
 # API
