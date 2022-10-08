@@ -8,6 +8,13 @@ yarn add react-native-live-text-image-view
 cd ios/ && pod install
 ```
 
+
+# Demo
+
+
+https://user-images.githubusercontent.com/23293248/194712758-67e897be-5703-40d5-8cea-83ae684ba00a.mp4
+
+
 # API
 
 ```jsx
@@ -24,7 +31,7 @@ import { LiveTextImageView } from 'react-native-live-text-image-view';
 </LiveTextImageView>;
 ```
 
-# Demo
+
 
 # Example
 
