@@ -1,7 +1,9 @@
 # React Native iOS Live Text Image
 
 
-https://user-images.githubusercontent.com/23293248/194712758-67e897be-5703-40d5-8cea-83ae684ba00a.mp4
+
+
+https://user-images.githubusercontent.com/23293248/194712842-bb7f5ab0-7ea4-4b4b-8a55-e17263f8adea.mp4
 
 
 
