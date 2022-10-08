@@ -28,11 +28,11 @@ class LiveTextImageViewView : UIView {
     
     private let _imageAnalyzer = ImageAnalyzer()
     private var _mySub: Any? = nil;
-    private var _imageView: RCTUIImageViewAnimated? = nil;
+    private var _imageView: UIImageView? = nil;
     
     
     override func didMoveToWindow() {
-        if let imageView = self.subviews.first?.subviews.first as? RCTUIImageViewAnimated {
+        if let imageView = self.subviews.first?.subviews.first as? UIImageView {
             self._imageView = imageView
             
             self._imageView?.addInteraction(interaction);
