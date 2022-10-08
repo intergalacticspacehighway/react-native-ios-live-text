@@ -28,39 +28,37 @@ class LiveTextImageViewView : UIView {
     
     private let imageAnalyzer = ImageAnalyzer()
     
+   
+    
     @objc var enabled: Bool = false {
         didSet {
             if (enabled) {
                 
-                if let image = self.subviews.first as? RCTImageView {
+                if let imageView = self.subviews.first?.subviews.first as? RCTUIImageViewAnimated {
                     
-                    let imageView = image.imageView;
-                    imageView?.addInteraction(interaction)
-                    guard let image = imageView?.image else {
-                        return
-                    }
-                    
-                    Task {
-                        let configuration = ImageAnalyzer.Configuration([.text])
+                
+                        imageView.addInteraction(interaction)
+                
+                        guard let image = imageView.image else {
+                            return
+                        }
                         
-                        do {
-                            let analysis = try await imageAnalyzer.analyze(image, configuration: configuration)
+                        Task {
+                            let configuration = ImageAnalyzer.Configuration([.text])
                             
-                            DispatchQueue.main.async {
-                                self.interaction.analysis = nil
-                                self.interaction.preferredInteractionTypes = []
+                            do {
+                                let analysis = try await imageAnalyzer.analyze(image, configuration: configuration)
                                 
-                                self.interaction.analysis = analysis
-                                self.interaction.preferredInteractionTypes = .automatic
+                                DispatchQueue.main.async {
+                                    self.interaction.analysis = analysis
+                                    self.interaction.preferredInteractionTypes = .automatic
+                                }
+                            } catch {
+                                print(error.localizedDescription)
                             }
-                            
-                        } catch {
-                            print(error.localizedDescription)
                         }
                     }
                 }
-                
-            }
         }
     }
     
