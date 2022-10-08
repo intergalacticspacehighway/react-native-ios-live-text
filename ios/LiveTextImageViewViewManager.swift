@@ -26,40 +26,50 @@ class LiveTextImageViewView : UIView {
         return interaction
     }()
     
-    private let imageAnalyzer = ImageAnalyzer()
+    private let _imageAnalyzer = ImageAnalyzer()
+    private var _mySub: Any? = nil;
+    private var _imageView: RCTUIImageViewAnimated? = nil;
     
-   
     
-    @objc var enabled: Bool = false {
-        didSet {
-            if (enabled) {
-                
-                if let imageView = self.subviews.first?.subviews.first as? RCTUIImageViewAnimated {
-                    
-                
-                        imageView.addInteraction(interaction)
-                
-                        guard let image = imageView.image else {
-                            return
-                        }
-                        
-                        Task {
-                            let configuration = ImageAnalyzer.Configuration([.text])
-                            
-                            do {
-                                let analysis = try await imageAnalyzer.analyze(image, configuration: configuration)
-                                
-                                DispatchQueue.main.async {
-                                    self.interaction.analysis = analysis
-                                    self.interaction.preferredInteractionTypes = .automatic
-                                }
-                            } catch {
-                                print(error.localizedDescription)
-                            }
-                        }
-                    }
+    override func didMoveToWindow() {
+        if let imageView = self.subviews.first?.subviews.first as? RCTUIImageViewAnimated {
+            self._imageView = imageView
+            
+            self._imageView?.addInteraction(interaction);
+            
+            self.attachAnalyzerToImage()
+            
+            self._mySub = _imageView?.observe(\.image, options: [.new]) { object, change in
+                    self.attachAnalyzerToImage()
                 }
-        }
+            }
     }
     
+    
+    func attachAnalyzerToImage() {
+        guard let image = self._imageView?.image else {
+                return
+            }
+        
+        Task {
+            let configuration = ImageAnalyzer.Configuration([.text])
+            
+            do {
+                let analysis = try await self._imageAnalyzer.analyze(image, configuration: configuration)
+                
+                DispatchQueue.main.async {
+                    self.interaction.analysis = analysis
+                    self.interaction.preferredInteractionTypes = .automatic
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+            
+    }
+    
+    deinit {
+        self._imageView = nil;
+        self._mySub = nil
+    }
 }

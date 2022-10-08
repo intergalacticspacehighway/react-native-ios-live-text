@@ -1,4 +1,9 @@
-import { requireNativeComponent, UIManager, Platform } from 'react-native';
+import {
+  requireNativeComponent,
+  UIManager,
+  Platform,
+  View,
+} from 'react-native';
 
 const LINKING_ERROR =
   `The package 'react-native-live-text-image-view' doesn't seem to be linked. Make sure: \n\n` +
@@ -7,15 +12,16 @@ const LINKING_ERROR =
   '- You are not using Expo managed workflow\n';
 
 type LiveTextImageViewProps = {
-  enabled: boolean;
   children: React.ReactNode;
 };
 
 const ComponentName = 'LiveTextImageViewView';
 
-export const LiveTextImageViewView =
-  UIManager.getViewManagerConfig(ComponentName) != null
-    ? requireNativeComponent<LiveTextImageViewProps>(ComponentName)
-    : () => {
-        throw new Error(LINKING_ERROR);
-      };
+export const LiveTextImageView =
+  Platform.OS === 'ios'
+    ? UIManager.getViewManagerConfig(ComponentName) != null
+      ? requireNativeComponent<LiveTextImageViewProps>(ComponentName)
+      : () => {
+          throw new Error(LINKING_ERROR);
+        }
+    : View;
