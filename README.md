@@ -1,6 +1,6 @@
 # React Native iOS Live Text Image
 
-
+Scans text as well as QRCode.
 
 
 https://user-images.githubusercontent.com/23293248/194712842-bb7f5ab0-7ea4-4b4b-8a55-e17263f8adea.mp4
@@ -10,8 +10,15 @@ https://user-images.githubusercontent.com/23293248/194712842-bb7f5ab0-7ea4-4b4b-
 # Installation
 
 ```
+// yarn
 yarn add react-native-live-text-image-view
 
+// npm
+npm install react-native-live-text-image-view
+
+```
+
+```
 cd ios/ && pod install
 ```
 
