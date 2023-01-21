@@ -1,0 +1,28 @@
+{
+  "name": "expo-dev-client-example",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "expo start --dev-client",
+    "android": "npx expo prebuild && npx expo run:android",
+    "ios": "npx expo prebuild && npx expo run:ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "expo": "~47.0.12",
+    "expo-dev-client": "~2.0.1",
+    "expo-image": "^1.0.0-beta.1",
+    "expo-splash-screen": "~0.17.5",
+    "expo-status-bar": "~1.4.2",
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "react-native": "0.70.5",
+    "react-native-web": "~0.18.9"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@types/react": "~18.0.14",
+    "@types/react-native": "~0.70.6",
+    "typescript": "^4.6.3"
+  },
+  "private": true
+}
